@@ -1,0 +1,40 @@
+# Function to input a matrix from the user
+def take_matrix(m, n):
+    out = []
+    for i in range(m):
+        row = []
+        for j in range(n):
+            element = int(input(f"Enter Element [{i}][{j}] :"))
+            row.append(element)
+        out.append(row)
+    return out
+
+# Function to find the saddle point in the matrix
+def saddle():
+    m = int(input("Enter Rows Of Matrix : "))
+    n = int(input("Enter Columns Of Matrix : "))
+    print("\n\tMATRIX A")
+    A = take_matrix(m, n)
+
+    for row in range(m):
+        # Find the smallest element in the row
+        min_row = A[row][0]
+        col_index = 0
+        for col in range(n):
+            if min_row > A[row][col]:
+                min_row = A[row][col]
+                col_index = col
+
+        # Check if it is the largest in its column
+        for k in range(m):
+            if min_row < A[k][col_index]:
+                break
+        else:
+            print("Value of Saddle Point:", min_row)
+            print(f"Index of {min_row} is [{row}][{col_index}]")
+            return True
+
+    print("No Saddle Point Found")
+
+# Main
+saddle()
